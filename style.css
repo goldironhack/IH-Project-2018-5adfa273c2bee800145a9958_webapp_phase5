@@ -1,9 +1,65 @@
-body {
-    color: #444;
-    font-family: Arial, sans-serif;
+header{
+    width: 100%;
+    text-align: center;
+    background-color: #41457F;
 }
 
-.container {
+#gMapContainer {
+    margin-top: 20px;
+    margin-bottom: 20px;
     width: 100%;
-    max-width: 960px;
+    height: 600px;
+}
+
+#SelectionTittle {
+    width: 100%;
+    text-align: center;
+}
+table, th, td{
+    padding: 2px;
+    border: 1px solid black;
+    text-align: center;
+}
+
+#tableWrapper {
+    position: relative;
+    width: 100%;
+    height: 300px;
+}
+
+#tableScroll {
+    height: 300px;
+    overflow: auto;
+    margin-top: 20px;
+}
+#search {
+    align-content: center;
+}
+
+#navigation {
+    background-color:#41457F; 
+    padding: 10px;
+    width: 100%;
+}
+ 
+.container{
+    background-color:#818AFF;
+}
+
+h2{
+    text-align: center;
+}
+h1, h2, h3 {
+    color: white;
+}
+#menu {
+    width: 100%;
+    padding: 20px;
+    vertical-align:middle; 
+}
+
+#formItem label {
+    text-align:center;
+    line-height:150%;
+    font-size:.85em;
 }

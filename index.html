@@ -1,15 +1,191 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title></title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <div class="container">
-        <h1>Hello World!</h1>
-        <button id="btn">Click me</button>
-    </div>
-    <script src="index.js"></script>
-</body>
+<html>
+    <head>
+        <meta charset="utf8">
+        <meta 
+            name="viewport" 
+            content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+        <!-- Custom Bootstrap-->
+        <link 
+            rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+        <!-- Custom css -->
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <title> WebApp </title>
+    </head>
+    
+    <body>
+        <!-------------- Contenido ---------------->
+        <div class="container"> 
+            <div class="row"><!-- primera fila para Titulo de la pagina -->
+                <header role="banner">
+                    <h1>BestPlace2Live</h1>
+                </header>
+            </div>
+
+            <div class="row"><!-- segunda fila para mapa y selectores -->
+                <div class="col-md-10"><!-- Mapa de googleMaps-->
+                    <div id="gMapContainer"></div>
+                </div>
+                <div class="col-md-2"><!-- Opciones para filtrar distritos -->
+                    <div class="row">
+                        <div id="SelectionTittle">
+                            <h3>Criteros de selección</h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div id="menu">
+                            <div class="row">
+                                <label><input type="checkbox" id="cDistance" value ="1" name ="cDistance"  onclick="mostrarTabla()">Distancia</label> 
+                            </div>
+                            <div class="row">
+                                <label><input type="checkbox" id="cCost" value ="1" name ="cCost"  onclick="mostrarTabla()">Costo</label>
+                            </div>
+                            <div class="row">
+                                <label><input type="checkbox" id="cSecurity" value ="1" name ="cSecurity"  onclick="mostrarTabla()">Seguridad</label>
+                            </div>
+                            <div class="row">
+                                <button id="bDistance">Distancia</button>
+                            </div> 
+                            <div class="row">
+                                <button id="bCost">Costo</button>
+                            </div>  
+                            <div class="row">
+                                <button id="bSecurity">Seguridad</button>
+                            </div>
+                            <div class="row">
+                                <button id="bMejor">Seguridad</button>
+                            </div>   
+                        </div>
+                              
+                    </div>
+                    
+                </div>
+            </div>
+          
+            <div class="row">
+                <nav id="navigation">
+                        <button id="MostrarJson" >MostrarJson</button>
+                        <button id="showDtaHousing" >DatosVivienda</button>
+                </nav>
+            </div>
+
+            <div class="row"><!-- tercera fila para mapa y selectores -->
+                <div class="col-md-5"><!-- 10 distritos principales -->
+                    <div id="housingCost" style="display: none;">
+                        <div id="tableScroll">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th colspan="4">Low cost housing projects available in New York</th>
+                                    </tr>
+                                    <tr>
+                                        <th>Borough</th>
+                                        <th>Latitude</th>
+                                        <th>Longitude</th>
+                                        <th>Extremely Low Income Units</th>
+                                    </tr>
+                                    <tbody id="mainTableBody">     
+                                    </tbody>
+                                </thead>
+                            </table>                          
+                        </div>
+                    </div>
+                    <div id="tDistance" style="display: none;">
+                        <div id="tableScroll">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th colspan="4">10 Distritos mas cercanos</th>
+                                    </tr>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Distrito</th>
+                                    </tr>
+                                    <tbody id="mtbodyDistance">     
+                                    </tbody>
+                                </thead>
+                            </table>                          
+                        </div>
+                    </div>
+                    <div id="tCost" style="display: none;">
+                        <div id="tableScroll">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th colspan="4">10 Distritos menos costosos</th>
+                                    </tr>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Distrito</th>
+                                    </tr>
+                                    <tbody id="mtbodyCost">     
+                                    </tbody>
+                                </thead>
+                            </table>                          
+                        </div>
+                    </div>
+                    <div id="tSecurity" style="display: none;">
+                        <div id="tableScroll">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th colspan="4">10 Distritos mas Seguros</th>
+                                    </tr>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Distrito</th>
+                                    </tr>
+                                    <tbody id="mtbodySecurity">     
+                                    </tbody>
+                                </thead>
+                            </table>                          
+                        </div>
+                    </div>
+                    <div id="tBestDistrics" style="display: none;">
+                        <div id="tableScroll">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th colspan="4">3 Mejores Distritos para vivir</th>
+                                    </tr>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Distrito</th>
+                                    </tr>
+                                    <tbody id="mtbodyBestDistrics">     
+                                    </tbody>
+                                </thead>
+                            </table>                          
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-7"><!-- Estadistica de cada distrito -->
+                    <div id="stadistics" style="display: none;" >
+                        <h2>Neighborhood statistics</h2>
+                    </div>  
+                </div>
+            </div>
+        
+            <!-------------- config ------------------->
+
+            <!-- Custom Jquery-->
+            <script
+                src="https://code.jquery.com/jquery-3.3.1.min.js"
+                integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+                crossorigin="anonymous"></script>
+
+            <!-- D3.js -->
+            <script src="https://d3js.org/d3.v5.min.js"></script>
+
+            <!-- Custom js-->
+            <script type="text/javascript" src="index.js"></script>
+
+            <!--Custom Google Maps API -->
+            <script async defer
+                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJqqm20pI8rcQG-25waCPWVPk3b3E03dI&libraries=geometry&libraries=places&callback=loadGoogleMap">
+            </script>
+           
+        </div>   
+    </body>
 </html>
